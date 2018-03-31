@@ -34,13 +34,18 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var playAgainButton: UIButton!
     
-
+    @IBOutlet weak var answerOneButtonConstraintBottom: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGameStartSound()
         // Start game
         playGameStartSound()
         displayQuestion()
+        
+        answerOneButtonConstraintBottom.constant = 20
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -9,11 +9,15 @@
 import Foundation
 
 class Quiz {
-        
+    let questionsPerRound: Int = 4
+    var questionsAsked: Int = 0
+    var correctQuestions: Int = 0
+    
+    var questions: Question!
+    
+    init(questions: Question!){
+        self.questions = questions
+    }
     
 }
 
-
-class GameManager {
-    
-}

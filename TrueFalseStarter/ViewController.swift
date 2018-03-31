@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var answerThreeButton: UIButton!
+    @IBOutlet weak var answerFourButton: UIButton!
+    
     @IBOutlet weak var playAgainButton: UIButton!
     
 

@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+//classes
+
+
+class Quiz {
+    
+}
+
+
+
+
+
+class Question {
+    
+}

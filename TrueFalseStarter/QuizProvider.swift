@@ -8,19 +8,14 @@
 
 import Foundation
 
-class Quiz {
-    let questionsPerRound: Int = 4
-    var questionsAsked: Int = 0
-    var correctQuestions: Int = 0
+struct Quiz {
     
     var questions: [Question] = []
     
-    init(){
-        
-    }
+    
     ///Generates questions
     //Give 1-3 wrong answers
-    func generateQuestions() {
+    init() {
         questions.append(
             Question(question: "Radioactive spider bite him.",
                      correctAnswer: "Spiderman",
@@ -86,6 +81,5 @@ class Quiz {
                      wrongAnswer1: "Iron Man",
                      wrongAnswer2: "Thor"))
     }
-    
 }
 

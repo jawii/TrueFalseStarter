@@ -34,24 +34,28 @@ class ViewController: UIViewController {
         ]
     ]
     
-    /*
-     //TESTIN
-    */
-    var questions = Question()
     
-    /*
- 
-    */
     
     @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
+    @IBOutlet weak var answerOneButton: UIButton!
+    @IBOutlet weak var answerTwoButton: UIButton!
     @IBOutlet weak var answerThreeButton: UIButton!
     @IBOutlet weak var answerFourButton: UIButton!
     
     @IBOutlet weak var playAgainButton: UIButton!
     
     @IBOutlet weak var answerOneButtonConstraintBottom: NSLayoutConstraint!
+    
+    
+    /*
+     //TESTIN
+     */
+    //var quiz = Quiz()
+    //var quizManger = QuizManager()
+    
+    /*
+     
+     */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +64,7 @@ class ViewController: UIViewController {
         playGameStartSound()
         displayQuestion()
         
-        answerOneButtonConstraintBottom.constant = 20
+        //answerOneButtonConstraintBottom.constant = 20
         
         
     }
@@ -79,8 +83,8 @@ class ViewController: UIViewController {
     
     func displayScore() {
         // Hide the answer buttons
-        trueButton.isHidden = true
-        falseButton.isHidden = true
+        answerOneButton.isHidden = true
+        answerTwoButton.isHidden = true
         
         // Display play again button
         playAgainButton.isHidden = false
@@ -96,7 +100,7 @@ class ViewController: UIViewController {
         let selectedQuestionDict = trivia[indexOfSelectedQuestion]
         let correctAnswer = selectedQuestionDict["Answer"]
         
-        if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
+        if (sender === answerOneButton &&  correctAnswer == "True") || (sender === answerTwoButton && correctAnswer == "False") {
             correctQuestions += 1
             questionField.text = "Correct!"
         } else {
@@ -118,8 +122,8 @@ class ViewController: UIViewController {
     
     @IBAction func playAgain() {
         // Show the answer buttons
-        trueButton.isHidden = false
-        falseButton.isHidden = false
+        answerOneButton.isHidden = false
+        answerTwoButton.isHidden = false
         
         questionsAsked = 0
         correctQuestions = 0

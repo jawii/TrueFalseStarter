@@ -10,76 +10,53 @@ import Foundation
 
 struct Quiz {
     
-    var questions: [Question] = []
-    
-    
-    ///Generates questions
-    //Give 1-3 wrong answers
-    init() {
-        questions.append(
-            Question(question: "Radioactive spider bite him.",
-                     correctAnswer: "Spiderman",
-                     wrongAnswer1: "Thor",
-                     wrongAnswer2: "Hulk",
-                     wrongAnswer3: "Pickachu"))
+    let questions: [Question] = [
+        Question(question: "Radioactive spider bite him.",
+                 correctAnswer: "Spiderman",
+                 wrongAnswer1: "Thor",
+                 wrongAnswer2: "Hulk",
+                 wrongAnswer3: "Pickachu"),
+        Question(question: "Bones are covered in adamantium. Also has claws and healing powers.",
+        correctAnswer: "Wolverine",
+        wrongAnswer1: "Daredevil",
+        wrongAnswer2: "Hulk"),
+        Question(question: "Body enchanced from an injection of a special serum during WWII.",
+                 correctAnswer: "Captain America",
+                 wrongAnswer1: "Iron Man",
+                 wrongAnswer2: "Hulk",
+                 wrongAnswer3: "Spiderman"),
+        Question(question: "Eccentric playboy billionaire.",
+                 correctAnswer: "Iron Man",
+                 wrongAnswer1: "Daredevil",
+                 wrongAnswer2: "Deadpool"),
+        Question(question: "Extraordinary hand-to-hand combatant. Carries often two swords and has healing powers.",
+                 correctAnswer: "Deadpool",
+                 wrongAnswer1: "Thor",
+                 wrongAnswer2: "Magneto",
+                 wrongAnswer3: "Daredevil"),
+        Question(question: "Hammer time - man",
+                 correctAnswer: "Thor",
+                 wrongAnswer1: "Iron Man",
+                 wrongAnswer2: "Wolverine"),
+        Question(question: "Boxer's son. Lost sight when he was a kid.",
+                 correctAnswer: "Daredevil",
+                 wrongAnswer1: "Docrot Strange",
+                 wrongAnswer2: "Hawkeye",
+                 wrongAnswer3: "Black Panther"),
+        Question(question: "Real name is T'Challa.",
+                 correctAnswer: "Black Panther",
+                 wrongAnswer1: "Thor",
+                 wrongAnswer2: "Superman"),
+        Question(question: "Powerful sorcerer.",
+                 correctAnswer: "Doctor Strange",
+                 wrongAnswer1: "Thor",
+                 wrongAnswer2: "Superman",
+                 wrongAnswer3: "Spiderman"),
+        Question(question: "Breaks always his trousers when angry.",
+                 correctAnswer: "Hulk",
+                 wrongAnswer1: "Iron Man",
+                 wrongAnswer2: "Thor")
         
-        questions.append(
-            Question(question: "Bones are covered in adamantium. Also has claws and healing powers.",
-                     correctAnswer: "Wolverine",
-                     wrongAnswer1: "Daredevil",
-                     wrongAnswer2: "Hulk"))
-        
-        questions.append(
-            Question(question: "Body enchanced from an injection of a special serum during WWII.",
-                     correctAnswer: "Captain America",
-                     wrongAnswer1: "Iron Man",
-                     wrongAnswer2: "Hulk",
-                     wrongAnswer3: "Spiderman"))
-        
-        questions.append(
-            Question(question: "Eccentric playboy billionaire.",
-                     correctAnswer: "Iron Man",
-                     wrongAnswer1: "Daredevil",
-                     wrongAnswer2: "Deadpool"))
-        
-        questions.append(
-            Question(question: "Extraordinary hand-to-hand combatant. Carries often two swords and has healing powers.",
-                     correctAnswer: "Deadpool",
-                     wrongAnswer1: "Thor",
-                     wrongAnswer2: "Magneto",
-                     wrongAnswer3: "Daredevil"))
-        
-        questions.append(
-            Question(question: "Hammer time - man",
-                     correctAnswer: "Thor",
-                     wrongAnswer1: "Iron Man",
-                     wrongAnswer2: "Wolverine"))
-        
-        questions.append(
-            Question(question: "Boxer's son. Lost sight when he was a kid.",
-                     correctAnswer: "Daredevil",
-                     wrongAnswer1: "Docrot Strange",
-                     wrongAnswer2: "Hawkeye",
-                     wrongAnswer3: "Black Panther"))
-        
-        questions.append(
-            Question(question: "Real name is T'Challa.",
-                     correctAnswer: "Black Panther",
-                     wrongAnswer1: "Thor",
-                     wrongAnswer2: "Superman"))
-        
-        questions.append(
-            Question(question: "Powerful sorcerer.",
-                     correctAnswer: "Doctor Strange",
-                     wrongAnswer1: "Thor",
-                     wrongAnswer2: "Superman",
-                     wrongAnswer3: "Spiderman"))
-        
-        questions.append(
-            Question(question: "Breaks always his trousers when angry.",
-                     correctAnswer: "Hulk",
-                     wrongAnswer1: "Iron Man",
-                     wrongAnswer2: "Thor"))
-    }
-}
+    ]
+ }
 

@@ -47,15 +47,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var answerOneButtonConstraintBottom: NSLayoutConstraint!
     
     
-    /*
-     //TESTIN
-     */
-    //var quiz = Quiz()
-    //var quizManger = QuizManager()
     
     /*
-     
-     */
+     //TESTIN
+    */
+    var quizzes = Quiz()
+    var quizManger = QuizManager(questionsPerRound: 4, questionFieldText: questionField, answerButtonOne: answerOneButton, answerButtonTwo: answerTwoButton, answerButtonThree: answerThreeButton, answerButtonFour: answerFourButton)
+    
+    /*
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +65,11 @@ class ViewController: UIViewController {
         displayQuestion()
         
         //answerOneButtonConstraintBottom.constant = 20
+        
+        //create group of buttons
+        //let answerButtons: [UIButton] = [answerOneButton, answerTwoButton, answerThreeButton, answerFourButton]
+        
+        
         
         
     }

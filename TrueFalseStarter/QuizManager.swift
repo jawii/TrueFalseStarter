@@ -18,11 +18,16 @@ class QuizManager {
     let questionsPerRound: Int
     var questionsAsked: Int = 0
     var correctQuestions: Int = 0
-    
+    var answerButtons: [UIButton]
+    let questionField: UILabel
+    let playAgainButton: UIButton
 
     
-    init(questionsPerRound: Int) {
+    init(questionsPerRound: Int, answerButtons: [UIButton], questionField: UILabel, playAgainButton: UIButton) {
         self.questionsPerRound = questionsPerRound
+        self.answerButtons = answerButtons
+        self.questionField = questionField
+        self.playAgainButton = playAgainButton
         
         //create new Quiz and take the questions
         let quiz = Quiz()
@@ -38,14 +43,17 @@ class QuizManager {
     
     
     ///Displays Question
-    func displayQuestion(questionLabel label: UILabel, answerButtons:[UIButton]) {
+    func displayQuestion() {
         
         //shows all buttons at first
-        showButtons(buttons: answerButtons)
+        showButtons()
+        
+        //hide playAgainButton
+        playAgainButton.isHidden = true
         
         let question = questions[questionsAsked]
         
-        label.text = question.question
+        questionField.text = question.question
         //scramble button array
         let btnArray = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: answerButtons) as! [UIButton]
         
@@ -65,12 +73,14 @@ class QuizManager {
     }
     
     
-    //Show all buttons
-    func showButtons(buttons: [UIButton]){
-        for btn in buttons {
+    ///Show all buttons
+    func showButtons(){
+        for btn in answerButtons {
             btn.isHidden = false
         }
     }
+    
+    
 }
 
 

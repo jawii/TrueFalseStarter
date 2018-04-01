@@ -11,6 +11,7 @@ import UIKit
 //for shuffling
 //import GameplayKit
 import GameKit
+import AudioToolbox
 
 class QuizManager {
     
@@ -22,6 +23,10 @@ class QuizManager {
     let questionField: UILabel
     let playAgainButton: UIButton
     var correctAnswerButton : UIButton!
+    var answered: Bool = false
+    
+    //sound
+    var gameSound: SystemSoundID = 0
 
     
     init(questionsPerRound: Int, answerButtons: [UIButton], questionField: UILabel, playAgainButton: UIButton) {
@@ -30,9 +35,25 @@ class QuizManager {
         self.questionField = questionField
         self.playAgainButton = playAgainButton
         
+        playAgainButton.isHidden = true
+        
         //create new Quiz and take the questions
         let quiz = Quiz()
         self.questions = quiz.questions
+    }
+    
+    ///Start game
+    func startGame() {
+        questionsAsked = 0
+        correctQuestions = 0
+        
+        //scramble questions
+        scrambleQuizQuestions()
+        
+        loadGameStartSound()
+        playGameStartSound()
+        
+        displayQuestion()
     }
     
     
@@ -43,28 +64,28 @@ class QuizManager {
             displayScore()
         }
         //else display other question
-        
-        //check answer
-        
-        
-        //next round
-        
-        //play again
+        else {
+            displayQuestion()
+        }
     }
     
     ///Check answer
     func checkAnswer(button: UIButton) {
+        answered = true
         if button == correctAnswerButton {
             print("Correct Answer")
             correctQuestions += 1
         }
-        displayQuestion()
+        gameLogic()
     }
     
     ///Displays score
     func displayScore(){
         //hide all buttons
         hideAnswerButtons()
+        questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
+        //show playButton
+        playAgainButton.isHidden = false
     }
     
     ///Scramble the Quiz questions
@@ -124,6 +145,19 @@ class QuizManager {
             btn.isHidden = true
         }
     }
+    
+    
+    
+    func loadGameStartSound() {
+        let pathToSoundFile = Bundle.main.path(forResource: "GameSound", ofType: "wav")
+        let soundURL = URL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL as CFURL, &gameSound)
+    }
+    
+    func playGameStartSound() {
+        AudioServicesPlaySystemSound(gameSound)
+    }
+    
     
     
     //Anna on kiva

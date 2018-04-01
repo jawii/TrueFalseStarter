@@ -21,6 +21,7 @@ class QuizManager {
     var answerButtons: [UIButton]
     let questionField: UILabel
     let playAgainButton: UIButton
+    var correctAnswerButton : UIButton!
 
     
     init(questionsPerRound: Int, answerButtons: [UIButton], questionField: UILabel, playAgainButton: UIButton) {
@@ -32,6 +33,38 @@ class QuizManager {
         //create new Quiz and take the questions
         let quiz = Quiz()
         self.questions = quiz.questions
+    }
+    
+    
+    ///Make the game logic
+    func gameLogic(){
+        //if questions asked is equal to questionPerRound -> quit the game and display score
+        if(questionsPerRound == questionsAsked){
+            displayScore()
+        }
+        //else display other question
+        
+        //check answer
+        
+        
+        //next round
+        
+        //play again
+    }
+    
+    ///Check answer
+    func checkAnswer(button: UIButton) {
+        if button == correctAnswerButton {
+            print("Correct Answer")
+            correctQuestions += 1
+        }
+        displayQuestion()
+    }
+    
+    ///Displays score
+    func displayScore(){
+        //hide all buttons
+        hideAnswerButtons()
     }
     
     ///Scramble the Quiz questions
@@ -46,7 +79,7 @@ class QuizManager {
     func displayQuestion() {
         
         //shows all buttons at first
-        showButtons()
+        showAnswerButtons()
         
         //hide playAgainButton
         playAgainButton.isHidden = true
@@ -62,7 +95,12 @@ class QuizManager {
         var index = 0
         for btn in btnArray {
             btn.setTitle(choices[index], for: .normal)
-        
+            
+            //get the right answer from array
+            if index == 0 {
+                correctAnswerButton = btn
+            }
+            
             if(choices[index] == "no-fourth"){
                 btn.isHidden = true
                 //btn.removeFromSuperview();
@@ -73,13 +111,22 @@ class QuizManager {
     }
     
     
-    ///Show all buttons
-    func showButtons(){
+    ///Show all answerButtons
+    func showAnswerButtons(){
         for btn in answerButtons {
             btn.isHidden = false
         }
     }
     
+    ///Hides all answerButtons
+    func hideAnswerButtons () {
+        for btn in answerButtons {
+            btn.isHidden = true
+        }
+    }
+    
+    
+    //Anna on kiva
     
 }
 

@@ -42,7 +42,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var playAgainButton: UIButton!
     
-    @IBOutlet weak var answerOneButtonConstraintBottom: NSLayoutConstraint!
     
     //create group of buttons
     var answerButtons: [UIButton] = []
@@ -107,7 +106,11 @@ class ViewController: UIViewController {
             questionField.text = "Sorry, wrong answer!"
         }
         
+        quizManager.checkAnswer(button: sender)
+        
         loadNextRoundWithDelay(seconds: 2)
+        
+        
     }
     
     func nextRound() {

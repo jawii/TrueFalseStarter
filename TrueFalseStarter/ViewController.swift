@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var answerFourButton: UIButton!
     
     @IBOutlet weak var playAgainButton: UIButton!
+    @IBOutlet var progressBar: UIView!
     
     
     //create quiz manager
@@ -43,7 +44,6 @@ class ViewController: UIViewController {
     
     @IBAction func checkAnswer(_ sender: UIButton) {
         quizManager.checkAnswer(button: sender)
-        loadNextRoundWithDelay(seconds: 2)
     }
     
     @IBAction func playAgain() {
@@ -52,16 +52,6 @@ class ViewController: UIViewController {
     
     // MARK: Helper Methods
     
-    func loadNextRoundWithDelay(seconds: Int) {
-        // Converts a delay in seconds to nanoseconds as signed 64 bit integer
-        let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
-        // Calculates a time value to execute the method given current time and delay
-        let dispatchTime = DispatchTime.now() + Double(delay) / Double(NSEC_PER_SEC)
-        
-        // Executes the nextRound method at the dispatch time on the main queue
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            //self.nextRound()
-        }
-    }
+    
 }
 

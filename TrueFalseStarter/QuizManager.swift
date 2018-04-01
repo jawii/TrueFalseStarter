@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-//for shuffling
-//import GameplayKit
 import GameKit
 import AudioToolbox
 
@@ -24,6 +22,7 @@ class QuizManager {
     let playAgainButton: UIButton
     var correctAnswerButton : UIButton!
     var answered: Bool = false
+    var buttonsInitialColor: UIColor!
     
     //sound
     var gameSound: SystemSoundID = 0
@@ -40,6 +39,7 @@ class QuizManager {
         //create new Quiz and take the questions
         let quiz = Quiz()
         self.questions = quiz.questions
+        self.buttonsInitialColor = answerButtons[0].backgroundColor
     }
     
     ///Start game
@@ -59,6 +59,13 @@ class QuizManager {
     
     ///Make the game logic
     func gameLogic(){
+        
+        //reset button colors
+        for btn in answerButtons {
+            let color = buttonsInitialColor
+            //btn.setTitleColor(color, for: .normal)
+            btn.backgroundColor = color
+        }
         //if questions asked is equal to questionPerRound -> quit the game and display score
         if(questionsPerRound == questionsAsked){
             displayScore()
@@ -75,8 +82,23 @@ class QuizManager {
         if button == correctAnswerButton {
             print("Correct Answer")
             correctQuestions += 1
+            
+            //change button color to green
+            let color = UIColor.init(red: 0.0/255, green: 255.0/255, blue: 0.0/255, alpha: 1)
+            //button.setTitleColor(color, for: .normal)
+            button.backgroundColor = color
+            //red: 251,green: 0, blue: 85
+            //button.isHighlighted = true
         }
-        gameLogic()
+        else{
+            //change button color to red
+            let color = UIColor.init(red: 255.0/255, green: 0.0/255, blue: 0.0/255, alpha: 1)
+            button.backgroundColor = color
+            
+            //change correct answer button to light green
+            correctAnswerButton.backgroundColor = UIColor.green
+        }
+        loadNextRoundWithDelay(seconds: 1)
     }
     
     ///Displays score
@@ -156,6 +178,18 @@ class QuizManager {
     
     func playGameStartSound() {
         AudioServicesPlaySystemSound(gameSound)
+    }
+    
+    func loadNextRoundWithDelay(seconds: Int) {
+        // Converts a delay in seconds to nanoseconds as signed 64 bit integer
+        let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
+        // Calculates a time value to execute the method given current time and delay
+        let dispatchTime = DispatchTime.now() + Double(delay) / Double(NSEC_PER_SEC)
+        
+        // Executes the nextRound method at the dispatch time on the main queue
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            self.gameLogic()
+        }
     }
     
     

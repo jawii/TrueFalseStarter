@@ -57,6 +57,7 @@ class QuizManager {
         
             if(choices[index] == "no-fourth"){
                 btn.isHidden = true
+                //btn.removeFromSuperview();
             }
             index += 1
         }

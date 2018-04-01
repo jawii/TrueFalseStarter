@@ -19,7 +19,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var answerFourButton: UIButton!
     
     @IBOutlet weak var playAgainButton: UIButton!
-    @IBOutlet var progressBar: UIView!
+    
+    @IBOutlet weak var progressBar: UIProgressView!
     
     
     //create quiz manager
@@ -31,7 +32,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         answerButtons = [answerOneButton, answerTwoButton, answerThreeButton, answerFourButton]
-        quizManager = QuizManager(questionsPerRound: 4, answerButtons: answerButtons, questionField: questionField, playAgainButton: playAgainButton)
+        quizManager = QuizManager(questionsPerRound: 4, answerButtons: answerButtons, questionField: questionField, playAgainButton: playAgainButton, timerBar: progressBar, answerTime: 15)
         
         quizManager.startGame()
         

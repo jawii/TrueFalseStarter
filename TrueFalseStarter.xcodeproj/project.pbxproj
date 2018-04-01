@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		310F5EAF20714A6000CE5145 /* GameSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 310F5EAD20714A6000CE5145 /* GameSound.wav */; };
+		310F5EB020714A6000CE5145 /* correctSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 310F5EAE20714A6000CE5145 /* correctSound.wav */; };
+		310F5EB220714A8F00CE5145 /* wrongSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 310F5EB120714A8E00CE5145 /* wrongSound.wav */; };
 		313A054A206FB5BB007DB802 /* QuizProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313A0549206FB5BB007DB802 /* QuizProvider.swift */; };
 		313A054C2070001A007DB802 /* QuestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313A054B2070001A007DB802 /* QuestionProvider.swift */; };
 		313A054E207001A6007DB802 /* QuizManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 313A054D207001A6007DB802 /* QuizManager.swift */; };
@@ -15,10 +18,12 @@
 		97093D411C913506001275BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97093D3F1C913506001275BC /* Main.storyboard */; };
 		97093D431C913506001275BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97093D421C913506001275BC /* Assets.xcassets */; };
 		97093D461C913506001275BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97093D441C913506001275BC /* LaunchScreen.storyboard */; };
-		97093D531C932116001275BC /* GameSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 97093D521C932116001275BC /* GameSound.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		310F5EAD20714A6000CE5145 /* GameSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameSound.wav; sourceTree = "<group>"; };
+		310F5EAE20714A6000CE5145 /* correctSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = correctSound.wav; sourceTree = "<group>"; };
+		310F5EB120714A8E00CE5145 /* wrongSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrongSound.wav; sourceTree = "<group>"; };
 		313A0549206FB5BB007DB802 /* QuizProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizProvider.swift; sourceTree = "<group>"; };
 		313A054B2070001A007DB802 /* QuestionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProvider.swift; sourceTree = "<group>"; };
 		313A054D207001A6007DB802 /* QuizManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizManager.swift; sourceTree = "<group>"; };
@@ -29,7 +34,6 @@
 		97093D421C913506001275BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97093D451C913506001275BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97093D471C913506001275BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		97093D521C932116001275BC /* GameSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameSound.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +75,9 @@
 				97093D421C913506001275BC /* Assets.xcassets */,
 				97093D441C913506001275BC /* LaunchScreen.storyboard */,
 				97093D471C913506001275BC /* Info.plist */,
-				97093D521C932116001275BC /* GameSound.wav */,
+				310F5EAE20714A6000CE5145 /* correctSound.wav */,
+				310F5EB120714A8E00CE5145 /* wrongSound.wav */,
+				310F5EAD20714A6000CE5145 /* GameSound.wav */,
 			);
 			path = TrueFalseStarter;
 			sourceTree = "<group>";
@@ -135,10 +141,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97093D531C932116001275BC /* GameSound.wav in Resources */,
 				97093D461C913506001275BC /* LaunchScreen.storyboard in Resources */,
 				97093D431C913506001275BC /* Assets.xcassets in Resources */,
 				97093D411C913506001275BC /* Main.storyboard in Resources */,
+				310F5EAF20714A6000CE5145 /* GameSound.wav in Resources */,
+				310F5EB220714A8F00CE5145 /* wrongSound.wav in Resources */,
+				310F5EB020714A6000CE5145 /* correctSound.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

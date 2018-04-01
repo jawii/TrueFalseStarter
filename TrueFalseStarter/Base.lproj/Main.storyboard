@@ -29,10 +29,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="X5Z-Cs-yjp">
-                                <rect key="frame" x="46" y="148" width="283" height="453"/>
+                                <rect key="frame" x="46" y="158" width="283" height="443"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1V-MS-ECi">
-                                        <rect key="frame" x="0.0" y="0.0" width="283" height="107.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="283" height="105"/>
                                         <color key="backgroundColor" red="0.70137188831965125" green="0.0" blue="0.3403930597835117" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,7 +47,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AS4-HX-g9f">
-                                        <rect key="frame" x="0.0" y="115.5" width="283" height="107"/>
+                                        <rect key="frame" x="0.0" y="113" width="283" height="104.5"/>
                                         <color key="backgroundColor" red="0.70137188831965125" green="0.0" blue="0.3403930597835117" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,7 +62,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHH-ch-Yx1">
-                                        <rect key="frame" x="0.0" y="230.5" width="283" height="107.5"/>
+                                        <rect key="frame" x="0.0" y="225.5" width="283" height="105"/>
                                         <color key="backgroundColor" red="0.70137188831965125" green="0.0" blue="0.3403930597835117" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,7 +77,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLH-nf-Rs1">
-                                        <rect key="frame" x="0.0" y="346" width="283" height="107"/>
+                                        <rect key="frame" x="0.0" y="338.5" width="283" height="104.5"/>
                                         <color key="backgroundColor" red="0.70137188831965125" green="0.0" blue="0.3403930597835117" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -113,7 +113,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sample Question" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I3V-ih-1Ky">
-                                <rect key="frame" x="10" y="28" width="355" height="100"/>
+                                <rect key="frame" x="10" y="38" width="355" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="EoF-eT-g5n"/>
                                 </constraints>
@@ -121,9 +121,8 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="00x-HK-JoM">
-                                <rect key="frame" x="108" y="14" width="150" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="00x-HK-JoM">
+                                <rect key="frame" x="26" y="28" width="323" height="2"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES" updatesFrequently="YES"/>
                                 </accessibility>
@@ -134,13 +133,16 @@
                             <constraint firstItem="X5Z-Cs-yjp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="0dt-wM-CQw"/>
                             <constraint firstAttribute="trailing" secondItem="I3V-ih-1Ky" secondAttribute="trailing" constant="10" id="0eQ-J8-4C9"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="K17-uy-MvB" secondAttribute="bottom" constant="8" symbolic="YES" id="4x6-We-CsE"/>
-                            <constraint firstItem="I3V-ih-1Ky" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="8jn-yW-8vS"/>
+                            <constraint firstItem="00x-HK-JoM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="CUL-Kl-0dR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="X5Z-Cs-yjp" secondAttribute="trailing" constant="30" id="FA2-dT-JU0"/>
                             <constraint firstAttribute="trailing" secondItem="K17-uy-MvB" secondAttribute="trailing" constant="20" symbolic="YES" id="JKx-DF-fq8"/>
                             <constraint firstItem="K17-uy-MvB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="PQT-GK-0C2"/>
+                            <constraint firstItem="I3V-ih-1Ky" firstAttribute="top" secondItem="00x-HK-JoM" secondAttribute="bottom" constant="8" symbolic="YES" id="Ymb-SP-efd"/>
                             <constraint firstItem="X5Z-Cs-yjp" firstAttribute="top" secondItem="I3V-ih-1Ky" secondAttribute="bottom" constant="20" id="i9j-s2-0QJ"/>
                             <constraint firstItem="I3V-ih-1Ky" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="ilf-xI-hEh"/>
                             <constraint firstItem="K17-uy-MvB" firstAttribute="top" secondItem="X5Z-Cs-yjp" secondAttribute="bottom" constant="8" symbolic="YES" id="l65-aH-XQb"/>
+                            <constraint firstItem="00x-HK-JoM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="rI9-UI-eva"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="00x-HK-JoM" secondAttribute="trailing" constant="10" id="s9R-J3-TeN"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -150,7 +152,7 @@
                         <outlet property="answerThreeButton" destination="dHH-ch-Yx1" id="swU-0z-SbY"/>
                         <outlet property="answerTwoButton" destination="AS4-HX-g9f" id="rY9-Dh-xSA"/>
                         <outlet property="playAgainButton" destination="K17-uy-MvB" id="0Bx-Cm-ye0"/>
-                        <outlet property="progressBar" destination="8bC-Xf-vdC" id="ELJ-u5-4hm"/>
+                        <outlet property="progressBar" destination="00x-HK-JoM" id="uBN-jX-yhc"/>
                         <outlet property="questionField" destination="I3V-ih-1Ky" id="7UI-o2-ATi"/>
                     </connections>
                 </viewController>

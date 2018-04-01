@@ -23,16 +23,22 @@ class QuizManager {
     var correctAnswerButton : UIButton!
     var answered: Bool = false
     var buttonsInitialColor: UIColor!
+    var timerBar: UIProgressView
+    
+    var timer :Timer = Timer()
+    let answerTime: Int
+    var seconds: Double
     
     //sound
     var gameSound: SystemSoundID = 0
 
     
-    init(questionsPerRound: Int, answerButtons: [UIButton], questionField: UILabel, playAgainButton: UIButton) {
+    init(questionsPerRound: Int, answerButtons: [UIButton], questionField: UILabel, playAgainButton: UIButton, timerBar: UIProgressView, answerTime: Int) {
         self.questionsPerRound = questionsPerRound
         self.answerButtons = answerButtons
         self.questionField = questionField
         self.playAgainButton = playAgainButton
+        self.timerBar = timerBar
         
         playAgainButton.isHidden = true
         
@@ -40,12 +46,22 @@ class QuizManager {
         let quiz = Quiz()
         self.questions = quiz.questions
         self.buttonsInitialColor = answerButtons[0].backgroundColor
+        
+        self.answerTime = answerTime
+        self.seconds = Double(answerTime)
     }
     
     ///Start game
     func startGame() {
         questionsAsked = 0
         correctQuestions = 0
+        timerBar.isHidden = false
+        
+        for btn in answerButtons {
+            let color = buttonsInitialColor
+            //btn.setTitleColor(color, for: .normal)
+            btn.backgroundColor = color
+        }
         
         //scramble questions
         scrambleQuizQuestions()
@@ -54,24 +70,34 @@ class QuizManager {
         playGameStartSound()
         
         displayQuestion()
+        
+        startTimer()
     }
     
     
     ///Make the game logic
     func gameLogic(){
         
-        //reset button colors
-        for btn in answerButtons {
-            let color = buttonsInitialColor
-            //btn.setTitleColor(color, for: .normal)
-            btn.backgroundColor = color
-        }
+        
         //if questions asked is equal to questionPerRound -> quit the game and display score
         if(questionsPerRound == questionsAsked){
             displayScore()
         }
         //else display other question
         else {
+            //restart timer
+            seconds = Double(answerTime)
+            timerBar.progress = 0
+            timer.invalidate()
+            startTimer()
+            
+            //reset button colors
+            for btn in answerButtons {
+                let color = buttonsInitialColor
+                //btn.setTitleColor(color, for: .normal)
+                btn.backgroundColor = color
+            }
+            
             displayQuestion()
         }
     }
@@ -98,11 +124,15 @@ class QuizManager {
             //change correct answer button to light green
             correctAnswerButton.backgroundColor = UIColor.green
         }
-        loadNextRoundWithDelay(seconds: 1)
+        timer.invalidate()
+        addDelay(seconds: 2)
     }
     
     ///Displays score
     func displayScore(){
+        timerBar.isHidden = true
+        
+        timer.invalidate()
         //hide all buttons
         hideAnswerButtons()
         questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
@@ -120,15 +150,13 @@ class QuizManager {
     
     ///Displays Question
     func displayQuestion() {
-        
+        timerBar.progress = 0
         //shows all buttons at first
         showAnswerButtons()
-        
         //hide playAgainButton
         playAgainButton.isHidden = true
-        
+
         let question = questions[questionsAsked]
-        
         questionField.text = question.question
         //scramble button array
         let btnArray = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: answerButtons) as! [UIButton]
@@ -146,7 +174,6 @@ class QuizManager {
             
             if(choices[index] == "no-fourth"){
                 btn.isHidden = true
-                //btn.removeFromSuperview();
             }
             index += 1
         }
@@ -168,19 +195,21 @@ class QuizManager {
         }
     }
     
-    
-    
     func loadGameStartSound() {
         let pathToSoundFile = Bundle.main.path(forResource: "GameSound", ofType: "wav")
         let soundURL = URL(fileURLWithPath: pathToSoundFile!)
         AudioServicesCreateSystemSoundID(soundURL as CFURL, &gameSound)
+        
+        //pathToSoundFile = Bundle.main.path(forResource: "wrongSound", ofType: "wav")
+        //soundURL = URL(fileURLWithPath: pathToSoundFile!)
+        //AudioServicesCreateSystemSoundID(soundURL as CFURL, &wrongSound)
     }
     
     func playGameStartSound() {
         AudioServicesPlaySystemSound(gameSound)
     }
     
-    func loadNextRoundWithDelay(seconds: Int) {
+    func addDelay(seconds: Int) {
         // Converts a delay in seconds to nanoseconds as signed 64 bit integer
         let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
         // Calculates a time value to execute the method given current time and delay
@@ -190,12 +219,35 @@ class QuizManager {
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.gameLogic()
         }
+
     }
     
+    func startTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 0.0625, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+    }
     
-    
-    //Anna on kiva
-    
+    //dunno what that means but hey, it works :>
+    @objc func updateTimer(){
+        seconds -= 1/16
+        
+        let timerProgress = Double(timerBar.progress)
+        timerBar.setProgress(Float(timerProgress + 1.0/(Double(answerTime) * 16.0)), animated: true)
+        
+        if timerBar.progress > 0.5 {
+            timerBar.progressTintColor = UIColor.orange
+        }
+        else if timerBar.progress > 0.75 {
+            timerBar.progressTintColor = UIColor.red
+        }
+        else{
+            timerBar.progressTintColor = UIColor.green
+        }
+        print(seconds)
+        if(seconds <= 0){
+            gameLogic()
+        }
+    }
+ 
 }
 
 

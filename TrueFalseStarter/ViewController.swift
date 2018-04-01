@@ -46,31 +46,23 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var answerOneButtonConstraintBottom: NSLayoutConstraint!
     
-    
-    
-    /*
-     //TESTIN
-    */
-    var quizzes = Quiz()
-    var quizManger = QuizManager(questionsPerRound: 4, questionFieldText: questionField, answerButtonOne: answerOneButton, answerButtonTwo: answerTwoButton, answerButtonThree: answerThreeButton, answerButtonFour: answerFourButton)
-    
-    /*
-    */
+    var quizManager = QuizManager(questionsPerRound: 4)
+    //create group of buttons
+    var answerButtons: [UIButton] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        answerButtons = [answerOneButton, answerTwoButton, answerThreeButton, answerFourButton]
+        quizManager.scrambleQuizQuestions()
+        
+        
         loadGameStartSound()
         // Start game
         playGameStartSound()
         displayQuestion()
-        
         //answerOneButtonConstraintBottom.constant = 20
-        
-        //create group of buttons
-        //let answerButtons: [UIButton] = [answerOneButton, answerTwoButton, answerThreeButton, answerFourButton]
-        
-        
-        
         
     }
 
@@ -84,6 +76,9 @@ class ViewController: UIViewController {
         let questionDictionary = trivia[indexOfSelectedQuestion]
         questionField.text = questionDictionary["Question"]
         playAgainButton.isHidden = true
+        
+        
+        quizManager.displayQuestion(questionLabel: questionField, answerButtons: answerButtons)
     }
     
     func displayScore() {

@@ -19,23 +19,10 @@ class QuizManager {
     var questionsAsked: Int = 0
     var correctQuestions: Int = 0
     
-    //buttons
-    let questionFieldText: UILabel
-    let answerButtonOne: UIButton
-    let answerButtonTwo: UIButton
-    let answerButtonThree: UIButton
-    let answerButtonFour: UIButton
-    
 
     
-    init(questionsPerRound: Int, questionFieldText: UILabel, answerButtonOne: UIButton, answerButtonTwo: UIButton, answerButtonThree: UIButton, answerButtonFour: UIButton!) {
+    init(questionsPerRound: Int) {
         self.questionsPerRound = questionsPerRound
-        
-        self.questionFieldText = questionFieldText
-        self.answerButtonOne = answerButtonOne
-        self.answerButtonTwo = answerButtonTwo
-        self.answerButtonThree = answerButtonThree
-        self.answerButtonFour = answerButtonFour
         
         //create new Quiz and take the questions
         let quiz = Quiz()
@@ -51,7 +38,47 @@ class QuizManager {
     
     
     ///Displays Question
-    func displayQuestion(toLabel: UILabel, answers: [UIButton], question: Question) {
+    func displayQuestion(questionLabel label: UILabel, answerButtons:[UIButton]) {
         
+        //shows all buttons at first
+        showButtons(buttons: answerButtons)
+        
+        let question = questions[questionsAsked]
+        
+        label.text = question.question
+        //scramble button array
+        let btnArray = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: answerButtons) as! [UIButton]
+        
+        var choices = [question.correctAnswer, question.wrongAnswer1, question.wrongAnswer2, question.wrongAnswer3]
+        
+        var index = 0
+        for btn in btnArray {
+            btn.setTitle(choices[index], for: .normal)
+        
+            if(choices[index] == "no-fourth"){
+                btn.isHidden = true
+            }
+            index += 1
+        }
+        questionsAsked += 1
+    }
+    
+    
+    //Show all buttons
+    func showButtons(buttons: [UIButton]){
+        for btn in buttons {
+            btn.isHidden = false
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+

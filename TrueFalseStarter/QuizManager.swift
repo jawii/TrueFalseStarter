@@ -31,6 +31,8 @@ class QuizManager {
     
     //sound
     var gameSound: SystemSoundID = 0
+    var wrongSound: SystemSoundID = 1
+    var correctSound: SystemSoundID = 2
 
     
     init(questionsPerRound: Int, answerButtons: [UIButton], questionField: UILabel, playAgainButton: UIButton, timerBar: UIProgressView, answerTime: Int) {
@@ -59,26 +61,18 @@ class QuizManager {
         
         for btn in answerButtons {
             let color = buttonsInitialColor
-            //btn.setTitleColor(color, for: .normal)
             btn.backgroundColor = color
         }
-        
         //scramble questions
         scrambleQuizQuestions()
-        
-        loadGameStartSound()
+        loadGameSounds()
         playGameStartSound()
-        
         displayQuestion()
-        
         startTimer()
     }
     
-    
-    ///Make the game logic
+    ///Makes the game logic
     func gameLogic(){
-        
-        
         //if questions asked is equal to questionPerRound -> quit the game and display score
         if(questionsPerRound == questionsAsked){
             displayScore()
@@ -106,21 +100,18 @@ class QuizManager {
     func checkAnswer(button: UIButton) {
         answered = true
         if button == correctAnswerButton {
-            print("Correct Answer")
+            playCorrectAnswerSound()
             correctQuestions += 1
-            
             //change button color to green
             let color = UIColor.init(red: 0.0/255, green: 255.0/255, blue: 0.0/255, alpha: 1)
-            //button.setTitleColor(color, for: .normal)
             button.backgroundColor = color
-            //red: 251,green: 0, blue: 85
-            //button.isHighlighted = true
+
         }
         else{
+            playWrongAnswerSound()
             //change button color to red
             let color = UIColor.init(red: 255.0/255, green: 0.0/255, blue: 0.0/255, alpha: 1)
             button.backgroundColor = color
-            
             //change correct answer button to light green
             correctAnswerButton.backgroundColor = UIColor.green
         }
@@ -140,13 +131,12 @@ class QuizManager {
         playAgainButton.isHidden = false
     }
     
-    ///Scramble the Quiz questions
+    ///Scrambles the Quiz questions
     func scrambleQuizQuestions() {
         //scramble the quiz
         let newQuestions = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: questions)
         self.questions = newQuestions as! [Question]
     }
-    
     
     ///Displays Question
     func displayQuestion() {
@@ -180,7 +170,6 @@ class QuizManager {
         questionsAsked += 1
     }
     
-    
     ///Show all answerButtons
     func showAnswerButtons(){
         for btn in answerButtons {
@@ -195,20 +184,32 @@ class QuizManager {
         }
     }
     
-    func loadGameStartSound() {
-        let pathToSoundFile = Bundle.main.path(forResource: "GameSound", ofType: "wav")
-        let soundURL = URL(fileURLWithPath: pathToSoundFile!)
+    ///Loads the game sounds
+    func loadGameSounds() {
+        var pathToSoundFile = Bundle.main.path(forResource: "GameSound", ofType: "wav")
+        var soundURL = URL(fileURLWithPath: pathToSoundFile!)
         AudioServicesCreateSystemSoundID(soundURL as CFURL, &gameSound)
         
-        //pathToSoundFile = Bundle.main.path(forResource: "wrongSound", ofType: "wav")
-        //soundURL = URL(fileURLWithPath: pathToSoundFile!)
-        //AudioServicesCreateSystemSoundID(soundURL as CFURL, &wrongSound)
+        pathToSoundFile = Bundle.main.path(forResource: "wrongSound", ofType: "wav")
+        soundURL = URL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL as CFURL, &wrongSound)
+        
+        pathToSoundFile = Bundle.main.path(forResource: "correctSound", ofType: "wav")
+        soundURL = URL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL as CFURL, &correctSound)
     }
     
     func playGameStartSound() {
         AudioServicesPlaySystemSound(gameSound)
     }
+    func playWrongAnswerSound() {
+        AudioServicesPlaySystemSound(wrongSound)
+    }
+    func playCorrectAnswerSound() {
+        AudioServicesPlaySystemSound(correctSound)
+    }
     
+    ///Adds delay and moves to gamelogic
     func addDelay(seconds: Int) {
         // Converts a delay in seconds to nanoseconds as signed 64 bit integer
         let delay = Int64(NSEC_PER_SEC * UInt64(seconds))
@@ -222,27 +223,27 @@ class QuizManager {
 
     }
     
+    ///Starts timer with timeInterval 0.0625 = 1/2^4
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 0.0625, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
     
-    //dunno what that means but hey, it works :>
+    ///Updates times
+    ///@objc <- dunno what that means but hey, it works :>
     @objc func updateTimer(){
         seconds -= 1/16
         
         let timerProgress = Double(timerBar.progress)
         timerBar.setProgress(Float(timerProgress + 1.0/(Double(answerTime) * 16.0)), animated: true)
         
-        if timerBar.progress > 0.5 {
-            timerBar.progressTintColor = UIColor.orange
-        }
-        else if timerBar.progress > 0.75 {
+
+        if timerBar.progress > 0.75 {
             timerBar.progressTintColor = UIColor.red
         }
         else{
             timerBar.progressTintColor = UIColor.green
         }
-        print(seconds)
+        //print(seconds)
         if(seconds <= 0){
             gameLogic()
         }

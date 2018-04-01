@@ -17,11 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var answerTwoButton: UIButton!
     @IBOutlet weak var answerThreeButton: UIButton!
     @IBOutlet weak var answerFourButton: UIButton!
-    
     @IBOutlet weak var playAgainButton: UIButton!
-    
     @IBOutlet weak var progressBar: UIProgressView!
-    
     
     //create quiz manager
     //can't assign buttons here so assign them in viewDidLoad - method
@@ -30,12 +27,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         answerButtons = [answerOneButton, answerTwoButton, answerThreeButton, answerFourButton]
         quizManager = QuizManager(questionsPerRound: 4, answerButtons: answerButtons, questionField: questionField, playAgainButton: playAgainButton, timerBar: progressBar, answerTime: 15)
-        
         quizManager.startGame()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,9 +44,5 @@ class ViewController: UIViewController {
     @IBAction func playAgain() {
         quizManager.startGame()
     }
-    
-    // MARK: Helper Methods
-    
-    
 }
 

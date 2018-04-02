@@ -126,7 +126,7 @@ class QuizManager {
         timer.invalidate()
         //hide all buttons
         hideAnswerButtons()
-        questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
+        questionField.text = "Quiz over! \nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
         //show playButton
         playAgainButton.isHidden = false
     }

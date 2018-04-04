@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         answerButtons = [answerOneButton, answerTwoButton, answerThreeButton, answerFourButton]
-        quizManager = QuizManager(questionsPerRound: 4, answerButtons: answerButtons, questionField: questionField, playAgainButton: playAgainButton, timerBar: progressBar, answerTime: 15)
+        quizManager = QuizManager(questionsPerRound: 6, answerButtons: answerButtons, questionField: questionField, playAgainButton: playAgainButton, timerBar: progressBar, answerTime: 15)
         quizManager.startGame()
     }
 
@@ -38,7 +38,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func checkAnswer(_ sender: UIButton) {
-        quizManager.checkAnswer(button: sender)
+        if(quizManager.canAnswer){
+            quizManager.checkAnswer(button: sender)
+        }
     }
     
     @IBAction func playAgain() {

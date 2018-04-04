@@ -21,7 +21,7 @@ class QuizManager {
     let questionField: UILabel
     let playAgainButton: UIButton
     var correctAnswerButton : UIButton!
-    var answered: Bool = false
+    var canAnswer: Bool = true
     var buttonsInitialColor: UIColor!
     var timerBar: UIProgressView
     
@@ -66,7 +66,7 @@ class QuizManager {
         //scramble questions
         scrambleQuizQuestions()
         loadGameSounds()
-        playGameStartSound()
+        playSound(named: gameSound)
         displayQuestion()
         startTimer()
     }
@@ -98,9 +98,9 @@ class QuizManager {
     
     ///Check answer
     func checkAnswer(button: UIButton) {
-        answered = true
+        canAnswer = false
         if button == correctAnswerButton {
-            playCorrectAnswerSound()
+            playSound(named: correctSound)
             correctQuestions += 1
             //change button color to green
             let color = UIColor.init(red: 0.0/255, green: 255.0/255, blue: 0.0/255, alpha: 1)
@@ -108,7 +108,7 @@ class QuizManager {
 
         }
         else{
-            playWrongAnswerSound()
+            playSound(named: wrongSound)
             //change button color to red
             let color = UIColor.init(red: 255.0/255, green: 0.0/255, blue: 0.0/255, alpha: 1)
             button.backgroundColor = color
@@ -199,14 +199,8 @@ class QuizManager {
         AudioServicesCreateSystemSoundID(soundURL as CFURL, &correctSound)
     }
     
-    func playGameStartSound() {
-        AudioServicesPlaySystemSound(gameSound)
-    }
-    func playWrongAnswerSound() {
-        AudioServicesPlaySystemSound(wrongSound)
-    }
-    func playCorrectAnswerSound() {
-        AudioServicesPlaySystemSound(correctSound)
+    func playSound(named sound: SystemSoundID) {
+        AudioServicesPlaySystemSound(sound)
     }
     
     ///Adds delay and moves to gamelogic
@@ -219,6 +213,7 @@ class QuizManager {
         // Executes the nextRound method at the dispatch time on the main queue
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
             self.gameLogic()
+            self.canAnswer = true
         }
 
     }
